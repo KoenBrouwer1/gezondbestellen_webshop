@@ -1,0 +1,21 @@
+services:
+  mysql_db:
+    image: mysql:8.0
+    container_name: mysql_db
+    restart: on-failure
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: gezondbestellen
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - app_net
+volumes:
+  mysql_data:
+
+networks:
+  app_net:
