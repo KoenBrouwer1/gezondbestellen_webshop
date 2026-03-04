@@ -68,9 +68,15 @@ class CartController extends Controller
     public function decrease($id)
     {
         $cart = Cart::findOrFail($id);
+        if ($cart->amount <= 1){
+             $cart->delete();
+             return redirect()->back();
+        }
+        else{
         $cart->amount--;
         $cart->save();
         return redirect()->back();
+        }
     }
     public function create()
     {
